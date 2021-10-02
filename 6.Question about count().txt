@@ -1,0 +1,16 @@
+I assume that developer before this query used DML 'Delete'.
+Ok, and how delete can influence time of operation?
+The root of the problem lies in the HWM ORACLE, 
+when new records are added, the HWM will slowly move up, 
+but after deleting the records, the HWM will not move down.
+Count 0 rows as it did to count for example 10000000.
+This is because Oracle is busy reading all of the blocks 
+below the HWM to see if they contain data.
+If you want to delete everything in table,then use Truncate.
+Truncate reset HWM to 0.
+Before writing this i experimented. I create table and
+insert 4 millions rows from another table.Then I Write query
+'Select Count(*) FROM new_table' and remembered execution time.
+After I deleted from 'new_table' all rows and repeated my query.
+At the end I compared execution time before and after.
+They were identical. 
