@@ -20,4 +20,4 @@ SELECT CASE TO_CHAR(TO_DATE('30.09.21','dd.mm.yy') + level,'fmday')
             TO_CHAR(TO_DATE('30.09.21','dd.mm.yy') + level,'dd.mm.yyyy') || ' BAZAR'
        END     
 FROM DUAL
-CONNECT BY level <= 31
+CONNECT BY level <= 31 
